@@ -11,20 +11,21 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/nasib-mohammad-cs/projectChallange.git'
+        git branch: 'main', credentialsId: 'jenkins-user-github', url: 'https://github.com/nasib-mohammad-cs/projectChallange.git'
       }
     }
+    
 
     stage('Build image for app1') {
         steps {
-                sh """
-                cd app1/src
-                """
-            }        
-            steps{
-        script {
-          dockerImage = docker.build dockerimagename
+            dir(path: '/var/jenkins_home/workspace/taskOne/Task1/app1/SRC') {
+                script {
+                    //sh 'ls -la'
+                dockerImage = docker.build dockerimagename
+                
         }
+        }
+
       }
     }
 
@@ -43,9 +44,11 @@ pipeline {
 
     stage('Deploying App to Kubernetes') {
       steps {
+          dir(path: '/var/jenkins_home/workspace/taskOne/Task1/app1/deploy') {
         script {
           kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
         }
+      }
       }
     }
 
