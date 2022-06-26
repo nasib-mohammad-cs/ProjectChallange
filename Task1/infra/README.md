@@ -8,5 +8,6 @@ RUN curl -sSL https://get.docker.com/ | sh
 USER jenkins
 
 => docker build --tag jenkinsdock .
+
 and then used this image in the compose file
 
