@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1-deployment
+  labels:
+    app: laravelapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laravelapp
+  template:
+    metadata:
+      labels:
+        app: laravelapp 
+    spec:
+      containers:
+      - name: laravelserver
+        image: nasibmohammad/laravelapp01:latest
+        ports:
+        - containerPort: 3000
+        
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: laravelapp-service
+spec:
+  selector:
+    app: laravelapp 
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 3000
+    nodePort: 31110
