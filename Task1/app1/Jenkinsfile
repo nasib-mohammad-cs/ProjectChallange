@@ -11,12 +11,17 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/shazforiot/nodeapp_test.git'
+        git 'https://github.com/nasib-mohammad-cs/projectChallange.git'
       }
     }
 
-    stage('Build image') {
-      steps{
+    stage('Build image for app1') {
+        steps {
+                sh """
+                cd app1/src
+                """
+            }        
+            steps{
         script {
           dockerImage = docker.build dockerimagename
         }
