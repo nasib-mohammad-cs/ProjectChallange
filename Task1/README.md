@@ -14,4 +14,7 @@ To complete the task, I followed below steps (details about these steps will be 
 
 N.B.: Due to my host machine's resource limitations i could not apply some portions of the task in my infrastructure, as example I could only created the system for app1.
 
+
+##deployed the laravel app in kubernetes 
+
 ![running cluster](https://user-images.githubusercontent.com/87854710/175838522-a3b63512-49fb-41ca-a2f0-0dabca2da4e7.png)
